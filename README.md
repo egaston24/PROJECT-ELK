@@ -7,7 +7,9 @@ The files in this repository were used to configure the network depicted below.
 These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above. Alternatively, select portions of the Playbook file may be used to install only certain pieces of it, such as Filebeat.
 
  -[Ansible Playbook](https://github.com/egaston24/PROJECT-ELK/blob/main/Ansible1/my-playbook.yml.txt)
+ 
  -[Filebeat Playbook](https://github.com/egaston24/PROJECT-ELK/blob/main/Ansible1/Filebeat-playbook.yml.txt)
+ 
  -[Metricbeat Playbook](https://github.com/egaston24/PROJECT-ELK/blob/main/Ansible1/metricbeat-playbook.yml)
 
 This document contains the following details:
@@ -75,46 +77,71 @@ The following screenshot displays the result of running `docker ps` after succes
 
 ### Target Machines & Beats
 This ELK server is configured to monitor the following machines:
+
 - Web-1 10.0.0.7
+
 - Web-2 10.0.0.8
+
 - Web-3 10.0.0.9
 
 We have installed the following Beats on these machines:
--Filebeat
--Metricbeat
+
+- Filebeat
+
+- Metricbeat
 
 These Beats allow us to collect the following information from each machine:
+
 - Filebeat watches for log files/locations and collects log events
+
 - Metricbeat records metrics and statistical data from the operating system and from services running on the server
 
 ### Using the Playbook
 In order to use the playbook, you will need to have an Ansible control node already configured. Assuming you have such a control node provisioned: 
 
 SSH into the control node and follow the steps below:
-- Copy the filebeat-config.yml and metricbeat-config.yml file to /etc/ansible/files.
-- Update the configuration files to include the Private IP of the ELK-Server to the ElasticSearch and Kibana Sections of the Configuration File
-- Run the playbook, and navigate to http://[your ELK-VM.External.IP]:5601/app/kibana to check that the installation worked as expected.
 
--The playbook files are:
-  -[ELK Installation.txt](https://github.com/egaston24/PROJECT-ELK/blob/main/Ansible1/ELK-Installation.txt) used to install ELK Server
-  -[Filebeat Playbook](https://github.com/egaston24/PROJECT-ELK/blob/main/Ansible1/Filebeat-playbook.yml.txt)
-  -[Metricbeat Playbook](https://github.com/egaston24/PROJECT-ELK/blob/main/Ansible1/metricbeat-playbook.yml)
+ - Copy the filebeat-config.yml and metricbeat-config.yml file to /etc/ansible/files
 
--Copy the playbook to: /etc/ansible/
--Update /etc/ansible/hosts.cfg  to make Ansible run the playbook on the machine
+ - Update the configuration files to include the Private IP of the ELK-Server to the ElasticSearch and Kibana Sections of the Configuration File
 
-To specify which machine to install the ELK server on versus which to install Filebeat is done by adding the private IPunder ELK not webservers.
--/etc/ansible/hosts
+ - Run the playbook
+
+ - Navigate to http://[your ELK-VM.External.IP]:5601/app/kibana to check that the installation worked as expected.
+
+The playbook files are:
+
+  - [ELK Installation.txt](https://github.com/egaston24/PROJECT-ELK/blob/main/Ansible1/ELK-Installation.txt) used to install ELK Server
+  
+  - [Filebeat Playbook](https://github.com/egaston24/PROJECT-ELK/blob/main/Ansible1/Filebeat-playbook.yml.txt)
+  
+  - [Metricbeat Playbook](https://github.com/egaston24/PROJECT-ELK/blob/main/Ansible1/metricbeat-playbook.yml)
+
+Copy the playbook to: /etc/ansible/
+
+To specify which machine to install the ELK server on versus which to install Filebeat is done by adding the private IP under ELK not webservers.
+
+- update /etc/ansible/hosts
 
 Navigate to http://[your ELK-VM.External.IP]:5601/app/kibana to check thata the ELK Server is running
 
-_ssh Redadmin@JumpBox(PrivateIP)
--sudo docker container list -a - Locate the ansible container
--sudo docker start frosty_duck
--sudo docker attach frosty_duck
--cd /etc/ansible
--ansible-playbook elk-playbook.yml (Installs and Configures ELK-Server)
--cd /etc/ansible/
--ansible-playbook beats-playbook.yml (Installs and Configures Beats)
--Open a new browser on Personal Workstation, navigate to (http://[yourELK-Vm.External IP:5601/app/kibana) - This will bring up Kibana Web Portal
+### Additonal Commands Used
+
+- ssh Redadmin@JumpBox(PrivateIP)
+
+- sudo docker container list -a - Locate the ansible container
+
+- sudo docker start frosty_duck
+
+- sudo docker attach frosty_duck
+
+- cd /etc/ansible
+
+- ansible-playbook elk-playbook.yml (Installs and Configures ELK-Server)
+
+- cd /etc/ansible/
+
+- ansible-playbook beats-playbook.yml (Installs and Configures Beats)
+
+- Open a new browser on Personal Workstation, navigate to (http://[yourELK-Vm.External IP:5601/app/kibana) - This will bring up Kibana Web Portal
 
