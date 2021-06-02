@@ -131,6 +131,6 @@ Navigate to http://[your ELK-VM.External.IP]:5601/app/kibana to check thata the 
 | sudo docker run -ti cyberxsecurity/ansible bash | run and create a docke imgage              | 
 | sudo docker start                               | starts the image specified                 |
 | sudo docker ps -a                               | list all active/inactive containers        |
-| sudo docker attach                              | effecetively sshing into the ansible       |
+| sudo docker attach                              | effectively sshing into the ansible       |
 | ssh-keygen                                      | create a ssh key                           |
 | ansible -m ping all                             | check the connection of ansible containers |
